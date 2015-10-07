@@ -1,11 +1,16 @@
 package com.moneysnap.app;
 
 import android.app.Activity;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import com.melnykov.fab.FloatingActionButton;
+import com.moneysnap.helper.MainEditText;
+import com.moneysnap.helper.RobotoFontHelper;
 
 import static com.moneysnap.helper.KeyboardHelper.hideKeyboard;
 
@@ -18,9 +23,12 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
 //        ListView listView = (ListView) findViewById(android.R.id.list);
 //        fab.attachToListView(listView);
+        Typeface typeface = Typeface.createFromAsset(getAssets(), RobotoFontHelper.ROBOTO_THIN.getResourcesPath());
         setContentView(R.layout.activity_main);
         rootRelativeLayout =  (RelativeLayout) findViewById(R.id.main);
         editText = (EditText) findViewById(R.id.editText);
+        editText.setTypeface(typeface);
+//        editText.getBackground().setColorFilter(Color.BLUE, PorterDuff.Mode.SRC_ATOP);
 //        fab = (FloatingActionButton) findViewById(R.id.fab);
 //        fab.setType(FloatingActionButton.TYPE_MINI);
 //        fab.show();
