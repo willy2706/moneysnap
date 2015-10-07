@@ -1,23 +1,26 @@
 package com.moneysnap.app;
 
 import android.app.Activity;
-import android.content.DialogInterface;
 import android.os.Bundle;
-import android.view.Display;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.ListView;
-import android.widget.TextView;
+import android.widget.EditText;
+import android.widget.RelativeLayout;
 import com.melnykov.fab.FloatingActionButton;
 
+import static com.moneysnap.helper.KeyboardHelper.hideKeyboard;
+
 public class MainActivity extends Activity {
-    FloatingActionButton fab;
+    private FloatingActionButton fab;
+    private RelativeLayout rootRelativeLayout;
+    private EditText editText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        ListView listView = (ListView) findViewById(android.R.id.list);
 //        fab.attachToListView(listView);
         setContentView(R.layout.activity_main);
+        rootRelativeLayout =  (RelativeLayout) findViewById(R.id.main);
+        editText = (EditText) findViewById(R.id.editText);
 //        fab = (FloatingActionButton) findViewById(R.id.fab);
 //        fab.setType(FloatingActionButton.TYPE_MINI);
 //        fab.show();
@@ -25,20 +28,51 @@ public class MainActivity extends Activity {
 //        fab.layout();
     }
 
-//    @Override
-//    protected void onResume() {
-//        super.onResume();
+    @Override
+    protected void onResume() {
+        super.onResume();
+        editText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean hasFocus) {
+                if (!hasFocus) {
+                    hideKeyboard(view);
+                }
+            }
+        });
+
+        rootRelativeLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (editText.isFocused()) {
+                    editText.clearFocus();
+                }
+            }
+        });
+//        relativeLayout.setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View view, MotionEvent motionEvent) {
+//                if (editText.isFocused()) {
+//                    editText.clearFocus();
+//                    InputMethodManager imm = (InputMethodManager) view.getContext()
+//                            .getSystemService(Context.INPUT_METHOD_SERVICE);
+//                    imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+//                }
+//                return false;
+//            }
+//        });
 //        fab.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
 //                System.out.println("haha");
 //            }
 //        });
-//    }
+    }
 //
-//    @Override
-//    protected void onPause() {
-//        super.onPause();
+    @Override
+    protected void onPause() {
+        super.onPause();
+        rootRelativeLayout.setOnClickListener(null);
+        editText.setOnFocusChangeListener(null);
 //        fab.setOnClickListener(null);
-//    }
+    }
 }
