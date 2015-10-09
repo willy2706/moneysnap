@@ -1,8 +1,12 @@
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar">
         <!-- Customize your theme here. -->
+    </style>
+
+    <style name="startButton"  parent="@android:style/Widget.Button">
+        <item name="android:background">@drawable/border_orange</item>
     </style>
 
 </resources>

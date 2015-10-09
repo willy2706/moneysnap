@@ -6,6 +6,7 @@ import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import com.melnykov.fab.FloatingActionButton;
@@ -18,6 +19,7 @@ public class MainActivity extends Activity {
     private FloatingActionButton fab;
     private RelativeLayout rootRelativeLayout;
     private EditText editText;
+    private Button startButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +30,8 @@ public class MainActivity extends Activity {
         rootRelativeLayout =  (RelativeLayout) findViewById(R.id.main);
         editText = (EditText) findViewById(R.id.editText);
         editText.setTypeface(typeface);
+//        startButton = (Button) findViewById(R.id.startButton);
+//        startButton.setTypeface(typeface);
 //        editText.getBackground().setColorFilter(Color.BLUE, PorterDuff.Mode.SRC_ATOP);
 //        fab = (FloatingActionButton) findViewById(R.id.fab);
 //        fab.setType(FloatingActionButton.TYPE_MINI);
